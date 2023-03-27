@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>Actividades</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha de actividad</th>
+          <th>Nombre de Usuario</th>
+          <th>Actividad</th>
+          <th>Acciones</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let actividad of actividades">
+          <td>{{ actividad.createDate }}</td>
+          <td>{{ actividad.user.name }}</td>
+          <td>{{ actividad.activityName }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModalModificarActividad(actividad)">Modi</button>
+            <button type="button" class="btn btn-danger"(click)="eliminarActividad(actividad.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      (click)="openModalAgregarActividad()">Agregar actividad</button>
+  </div>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modoEdicion ? 'Modificar actividad' : 'Nuevo actividad' }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+  
+            <div class="col-md-12">
+                <label for="name" class="form-label">Detalle de Actividad</label>
+                <input type="text" class="form-control" id="name" 
+                  [(ngModel)]="actividad.activityName">
+            </div>
+            <div class="col-md-12">
+                <label for="usuario" class="form-label">Selecciona un usuario</label>
+                <select class="form-select" name="usuario" [(ngModel)]="actividad.idUser">
+                    <option *ngFor="let usuario of usuarios" [value]="usuario.idUser">{{ usuario.name }}</option>
+                  </select>
+            </div>
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="modoEdicion ? modificarActividad(actividad) : agregarActividad() ">{{ modoEdicion ? 'Guardar' : 'Crear' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>

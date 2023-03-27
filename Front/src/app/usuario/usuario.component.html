@@ -1,0 +1,106 @@
+<div class="container">
+  <h1>usuarios</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo Electronico</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Telefono</th>
+        <th>Pais de Residencia</th>
+        <th>Desea recibir informacion?</th>
+        <th>Acciones</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.name }}</td>
+        <td>{{ usuario.lastName }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.dateOfBirth }}</td>
+        <td>{{ usuario.phoneNumber }}</td>
+        <td>{{ usuario.countryOfResidence }}</td>
+        <td>{{ usuario.permissionInformation }}</td>
+        <td>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModalModificarUsuario(usuario)">Modi</button>
+          <button type="button" class="btn btn-danger"(click)="eliminarUsuario(usuario.idUser)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    (click)="openModalAgregarUsuario()">Agregar usuario</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modoEdicion ? 'Modificar Usuario' : 'Nuevo Usuario' }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" 
+                  [(ngModel)]="usuario.name">
+              </div>
+              <div class="col-md-6">
+                <label for="lastName" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="lastName" 
+                  [(ngModel)]="usuario.lastName">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label for="email" class="form-label">Correo Electronico</label>
+            <input type="email" class="form-control" id="email" 
+              [(ngModel)]="usuario.email">
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" 
+                  [(ngModel)]="usuario.phoneNumber">
+              </div>
+              <div class="col-md-6">
+                <label for="residencia" class="form-label">Residencia</label>
+                <input type="text" class="form-control" id="residencia" 
+                  [(ngModel)]="usuario.countryOfResidence">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="fechaDeNacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaDeNacimiento" name="fechaDeNacimiento" 
+                  [(ngModel)]="usuario.dateOfBirth">
+              </div>
+              <div class="col-md-6">
+                <label for="informacion" class="form-check-label">¿Desea recibir información?</label>
+                <input type="checkbox" class="form-check-input" id="informacion" 
+                  [(ngModel)]="usuario.permissionInformation">
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="modoEdicion ? modificarUsuario(usuario) : agregarUsuario() ">{{ modoEdicion ? 'Guardar' : 'Crear' }}</button>
+      </div>
+    </div>
+  </div>
+</div>

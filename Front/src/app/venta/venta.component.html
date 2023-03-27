@@ -1,0 +1,71 @@
+<div class="container">
+  <h1>Ventas</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Total de Items</th>
+        <th>Descripción</th>
+        <th>Precio Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let venta of ventas">
+        <td>{{ venta.id }}</td>
+        <td>{{ venta.client }}</td>
+        <td>{{ venta.totalItems }}</td>
+        <td>{{ venta.description }}</td>
+        <td>{{ venta.totalPrice | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    (click)="openModal()">Agregar Venta</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Venta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="DNI del cliente"
+                  [(ngModel)]="ventaModel.client">
+              </div>
+              <div class="col-md-12">
+                <label for="exampleFormControlInput1" class="form-label">Cantidad de productos</label>
+                <input type="number" class="form-control" [(ngModel)]="productosSeleccionados.length">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Agregue Productos</label>
+            <!-- <select class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple
+              [(ngModel)]="productosSeleccionados">
+              <option *ngFor="let item of productos" [ngValue]="item">{{item.name}}</option>
+            </select> -->
+            <select class="form-select" id="multiple-select-field" multiple
+              [(ngModel)]="productosSeleccionados">
+              <option *ngFor="let item of productos" [ngValue]="item">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="agregarVenta()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<!-- <form (submit)="login(username.value, password.value)">
+    <input type="text" placeholder="Username" #username>
+    <input type="password" placeholder="Password" #password>
+    <button type="submit">Login</button>
+  </form> -->
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- <img src="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png" id="icon" alt="User Icon" /> -->
+        <img src="https://cdn.dribbble.com/users/330915/screenshots/3969537/20_other_store_800.gif" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form (submit)="login(username.value, password.value)">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" #username required>
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" #password required>
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  <!-- <form (submit)="login(username.value, password.value)">
+    <mat-form-field class="col-sm-12" style="display: flex; align-items: center;">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" #username required>
+    </mat-form-field>
+    <mat-form-field class="col-sm-12" style="display: flex; align-items: center;">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" #password required>
+    </mat-form-field>
+    <input type="submit" class="fadeIn fourth" value="Log In">
+  </form> -->
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>

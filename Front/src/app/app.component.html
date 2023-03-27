@@ -1,0 +1,22 @@
+<!-- <mat-drawer-container>
+  <mat-drawer #drawer mode="side">
+    <a [routerLink]="['/home']">Home</a><br>
+    <a [routerLink]="['/producto']">Producto</a><br>
+    <a [routerLink]="['/venta']">Venta</a>
+  </mat-drawer>
+  <div>
+   <button (click)="drawer.toggle();">Mostrar ocultar</button>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+ -->
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 col-lg-10 main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
